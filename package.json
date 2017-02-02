@@ -2,7 +2,7 @@
   "name": "goldenimage",
   "version": "0.0.1",
   "description": "Fix camera rotation of an image",
-  "main": "dist/goldenimage.js",
+  "main": "dist/goldenimage.min.js",
   "scripts": {
     "test": "gulp",
     "lint": "gulp lint",
