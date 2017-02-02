@@ -1,5 +1,5 @@
 {
-  "name": "imagine",
+  "name": "goldenimage",
   "version": "0.0.1",
   "description": "Fix camera rotation of an image",
   "main": "dist/goldenimage.js",
