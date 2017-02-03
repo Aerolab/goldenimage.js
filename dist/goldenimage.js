@@ -86,7 +86,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  reader.readAsArrayBuffer(file);
 	};
 	
-	var loadImage = function loadImage(f, callback) {
+	var loadImage = function loadImage(f) {
+	  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	  var callback = arguments[2];
+	
 	  getOrientation(f, function (srcOrientation) {
 	    var reader = new FileReader();
 	    reader.addEventListener('load', function (file) {
@@ -97,9 +100,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var canvas = document.createElement('canvas');
 	        var ctx = canvas.getContext('2d');
 	
-	        var preferedWidth = 300;
-	        var ratio = 1;
-	
 	        if ([5, 6, 7, 8].indexOf(srcOrientation) > -1) {
 	          canvas.width = height;
 	          canvas.height = width;
@@ -107,6 +107,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          canvas.width = width;
 	          canvas.height = height;
 	        }
+	        var preferedWidth = options.width || canvas.width;
 	
 	        switch (srcOrientation) {
 	          case 2:
