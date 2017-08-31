@@ -1,6 +1,6 @@
 {
   "name": "goldenimage",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Fix camera rotation of an image",
   "main": "dist/goldenimage.js",
   "scripts": {

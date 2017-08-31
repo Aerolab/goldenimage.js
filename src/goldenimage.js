@@ -45,6 +45,11 @@ const loadImage = (f, options = {}, callback) => {
           canvas.height = height;
         }
         const preferedWidth = options.width || canvas.width;
+        const outputCompression = options.compression || 0.7;
+        let outputType = null
+        if (options.compression) {
+          outputType = 'image/jpeg';
+        }
 
         switch (srcOrientation) {
           case 2: ctx.transform(-1, 0, 0, 1, width, 0); break;
@@ -58,7 +63,7 @@ const loadImage = (f, options = {}, callback) => {
         }
 
         ctx.drawImage(img, 0, 0);
-        const src = canvas.toDataURL();
+        const src = canvas.toDataURL(outputType, outputCompression);
 
         // Resizing
         const img2 = new Image();
@@ -68,7 +73,7 @@ const loadImage = (f, options = {}, callback) => {
           canvas.width = preferedWidth;
           canvas.height = canvas.height * ratio;
           ctx.drawImage(img2, 0, 0, canvas.width, canvas.height);
-          callback(canvas.toDataURL());
+          callback(canvas.toDataURL(outputType, outputCompression));
         }
       }
       img.src = file.target.result;

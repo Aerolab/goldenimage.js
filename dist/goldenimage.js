@@ -108,6 +108,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	          canvas.height = height;
 	        }
 	        var preferedWidth = options.width || canvas.width;
+	        var outputCompression = options.compression || 0.7;
+	        var outputType = null;
+	        if (options.compression) {
+	          outputType = 'image/jpeg';
+	        }
 	
 	        switch (srcOrientation) {
 	          case 2:
@@ -129,7 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        ctx.drawImage(img, 0, 0);
-	        var src = canvas.toDataURL();
+	        var src = canvas.toDataURL(outputType, outputCompression);
 	
 	        // Resizing
 	        var img2 = new Image();
@@ -139,7 +144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          canvas.width = preferedWidth;
 	          canvas.height = canvas.height * ratio;
 	          ctx.drawImage(img2, 0, 0, canvas.width, canvas.height);
-	          callback(canvas.toDataURL());
+	          callback(canvas.toDataURL(outputType, outputCompression));
 	        };
 	      };
 	      img.src = file.target.result;
